@@ -1,0 +1,38 @@
+{
+  "name": "@bigbang/{{kebabCase name}}",
+  "version": "1.0.0",
+  "description": "{{description}}",
+  "keywords": [
+    "bigbang"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": "https://github.com/kgzhang/bigbang",
+  "author": "{{author}}",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {},
+  "devDependencies": {
+	  "@bigbang/eslint-config": "{{eslintVersion}}"
+  },
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "clean": "rimraf './lib' && rm -f ./tsconfig.tsbuildinfo",
+    "type-check": "tsc --emitDeclarationsOnly",
+    "type-check:watch": "yarn type-check --watch",
+    "build:js": "babel ./src --out-dir lib --extensions '.ts,.tsx'",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build": "yarn clean && yarn build:types && yarn build:js",
+    "lint": "eslint src --ext='.ts,.js'",
+    "test": "jest --color",
+    "prepare": "cross-env NODE_ENV=production yarn build"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
